@@ -17,9 +17,11 @@
   (reduce conj '() coll))
 
 (defn factorial [n]
-  (if (= 1 n)
-    1
-    (* n (factorial (dec n)))))
+  (loop [y   n
+         acc 1]
+    (if (= 1 y)
+      acc
+      (recur (dec y) (* acc y)))))
 
 (meditations
   "Recursion ends with a base case"
@@ -50,7 +52,7 @@
   (= 24 (factorial 4))
 
   "You can even deal with very large numbers"
-  (< 1000000000000000000000000N (factorial 1000N)))
+  (< 1000000000000000000000000N (factorial 1000N))
 
-  ;; "But what happens when the machine limits you?"
-  ;; (< 1000000000000000000000000N (factorial 100003N)))
+  "But what happens when the machine limits you?"
+  (< 1000000000000000000000000N (factorial 100003N)))
